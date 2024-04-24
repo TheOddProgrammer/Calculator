@@ -1,0 +1,64 @@
+Definir Formato(Numero):
+    devolver (redondear(Numero,4))
+
+Definir Main(X):
+    Declarar Matriz A, Matriz B, Matriz L, Matriz U, Matriz Z, Matriz X
+    Matriz A = Ingresar Datos
+    Matriz B = Datos Ingresados
+    Matriz U = LU(Matriz A,"U")
+    Matriz L = LU(Matriz A,"L")
+    Matriz Z = UB(Matriz L,Matriz B)
+    Matriz X = UZ(Matriz U,Matriz Z)
+
+    si X igual "A":
+        devolver (Matriz A)
+    pero si X igual "L":
+        devolver (Matriz L)
+    pero si X igual "U":
+        devolver (Matriz U)
+    pero si X igual "Z":
+        devolver (Matriz Z)
+    pero si X igual "X":
+        devolver (Matriz X)
+    sino: 
+        devolver (Matriz B)
+
+Definir LU(Matriz A,X):
+    U11 = Formato(Matriz A[0][0])
+    U12 = Formato(Matriz A[0][1])
+    U13 = Formato(Matriz A[0][2])
+    
+    L21 = Formato(Matriz A[1][0]/U11)
+    U22 = Formato(Matriz A[1][1]-(L21*U12))
+    U23 = Formato(Matriz A[1][2]-(L21*U13))
+    
+    L31 = Formato(Matriz A[2][0]/U11)
+    L32 = Formato((Matriz A[2][1]-(L31*U12))/U22)
+    U33 = Formato((Matriz A[2][2]-(L31*U13) - (L32*U23)))
+
+    Matriz L = [[1,0,0],[L21,1,0],[L31,L32,1]]
+    Matriz U = [[U11,U12,U13],[0,U22,U23],[0,0,U33]]
+    
+    Si N es Igual a "L":
+        devolver Matriz L
+    sino:
+        devolver Matriz U
+
+Definir UB(Matriz L,Matriz B):
+    Z1 = Formato(Matriz B[0])
+    Z2 = Formato(Matriz B[1] - (Matriz L[1][0]*Z1))
+    Z3 = Formato(Matriz B[2] - (Matriz L[2][0]*Z1) - (Matriz L[2][1]*Z2))
+    
+    Matriz Z = [Z1, Z2, Z3]
+    
+    devolver Matriz Z
+
+#Funcion para Encontrar Valores de X
+Definir UZ(Matriz U,Matriz Z):
+    X3 = Formato(Matriz Z[2]/Matriz U[2][2])
+    X2 = Formato((Matriz Z[1]-(Matriz U[1][2]*X3))/Matriz U[1][1])
+    X1 = Formato((Matriz Z[0]-(Matriz U[0][2]*X3)-(Matriz U[0][1]*X2))/Matriz U[0][0])
+    
+    Matriz_X = [X1, X2, X3]
+    
+    devolver Matriz X
