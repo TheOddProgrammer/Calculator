@@ -3,10 +3,18 @@ def F(numero):
     return round(numero, 4)
 
 
+Matriz_A = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+Matriz_B = [0, 0, 0]
+
+
+def Imprimir():
+    print(Matriz_A)
+    print(Matriz_B)
+    return 0
+
+
 # Funcion de Ejecucion Principal
 def Executable(X):
-    Matriz_B = [9, 7, 12]
-    Matriz_A = [[4, -2, -1], [5, 1, -1], [1, 2, -1]]
     Matriz_U = LU(Matriz_A, "U")
     Matriz_L = LU(Matriz_A, "L")
     Matriz_Z = UB(Matriz_L, Matriz_B)

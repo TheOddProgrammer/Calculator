@@ -1,13 +1,15 @@
 import customtkinter as ct
-import Components.Boton as Boton
+import Components.Solution_X as SX
 
 
-def ShowData(container):
+def PrincipalShowData(container):
     frame = ct.CTkFrame(
         master=container,
-        fg_color="white",
-        width=2000,
-        height=700,
+        fg_color="blue",
     )
 
-    frame.grid(row=0, column=1)
+    frame.pack(side=ct.LEFT)
+    frame.pack(expand=True)
+    frame.pack(fill=ct.BOTH)
+
+    SX.FrameX(frame)

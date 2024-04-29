@@ -2,14 +2,14 @@ import customtkinter as ct
 import Components.Boton as Boton
 
 
-def MainFrame(container):
+def MainFrame(container, app):
     frame = ct.CTkFrame(
         master=container,
-        fg_color="gray",
-        height=1000,
-        width=300,
+        fg_color="black",
+        bg_color="black",
     )
 
-    frame.grid(row=0, column=0)
+    frame.pack(side=ct.LEFT)
+    frame.pack(fill=ct.Y)
 
-    Boton.Buttons(frame)
+    Boton.Buttons(frame, app)
