@@ -17,7 +17,7 @@ def ManualButton(app):
         wb.open("Archives\Documentacion.pdf")
 
     def OpenGuide():
-        wb.open("Archives\Documentacion.pdf")
+        wb.open("Archives\Manual.pdf")
 
     def OpenOptions():
         OpenButton.place_forget()

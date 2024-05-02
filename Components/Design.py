@@ -133,9 +133,9 @@ def MenuBotones(app):
 
     # ________________________________Frame Principal Ingreso Datos__________________________________
 
-    ScreenMainFrame = ct.CTkFrame(
+    ScreenMainFrame = ct.CTkScrollableFrame(
         master=app,
-        fg_color="#293C4B",
+        fg_color="white",
         corner_radius=0,
     )
     ScreensPositions(ScreenMainFrame)

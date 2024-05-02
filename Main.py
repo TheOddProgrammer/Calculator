@@ -7,7 +7,6 @@ customtkinter.set_default_color_theme("green")
 ScaleScreen = True
 
 app = customtkinter.CTk(fg_color="white")
-
 if ScaleScreen:
     app.wm_attributes("-fullscreen", True)
 else:
