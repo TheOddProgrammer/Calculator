@@ -1,16 +1,14 @@
 # Funcion de Formato
+
+
+# Formato de los Numeros para Tratarlos con 4 Digitos
 def F(numero):
     return round(numero, 4)
 
 
+# Definicion Matrices Globales para Su llamado desde Otro Archivo
 Matriz_A = [[21, 3, 2], [5, 4, 8], [9, -2, 4]]
 Matriz_B = [13, -7, 8]
-
-
-def Imprimir():
-    print(Matriz_A)
-    print(Matriz_B)
-    return 0
 
 
 # Funcion de Ejecucion Principal

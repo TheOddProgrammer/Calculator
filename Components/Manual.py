@@ -6,6 +6,7 @@ def ManualButton(app):
 
     # Funcion de los Botones Usados
 
+    # Coloca en el Frame el Widget Enviado
     def ButtonPosition(Texto):
         Texto.pack(side=ct.TOP)
         Texto.pack(expand=True)
@@ -13,12 +14,15 @@ def ManualButton(app):
         Texto.pack(fill=ct.BOTH)
         Texto.pack_propagate(False)
 
+    # Abre la Documentacion
     def OpenDoc():
         wb.open("Archives\Documentacion.pdf")
 
+    # Abre el Manual
     def OpenGuide():
         wb.open("Archives\Manual.pdf")
 
+    # Abre las Opciones de Documentacion o Manual
     def OpenOptions():
         OpenButton.place_forget()
         FrameOptions.place(relx=0.88, rely=0.82)
@@ -26,6 +30,7 @@ def ManualButton(app):
         CloseButton.place(relx=0.94, rely=0.92)
         CloseButton.pack_propagate(False)
 
+    # Cierra las Opciones
     def CloseOptions():
         CloseButton.place_forget()
         FrameOptions.place_forget()
@@ -63,7 +68,6 @@ def ManualButton(app):
     )
 
     # Frame donde se Muestran las Opciones a Elegir
-
     FrameOptions = ct.CTkFrame(
         master=app,
         bg_color="#293C4B",
@@ -73,6 +77,7 @@ def ManualButton(app):
         corner_radius=10,
     )
 
+    # Boton que Abre la Guía
     ButtonGuide = ct.CTkButton(
         master=FrameOptions,
         text="Guide",
@@ -84,6 +89,7 @@ def ManualButton(app):
 
     ButtonPosition(ButtonGuide)
 
+    # Boton que Abre el Documento
     ButtonDocument = ct.CTkButton(
         master=FrameOptions,
         text="Document",

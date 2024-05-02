@@ -1,36 +1,40 @@
 import customtkinter as ct
 import Components.ContentMain as Content
-import Components.ContentLU as ContentLU
-import Components.ContentZ as ContentZ
 
 
 def MenuBotones(app):
 
     # Definicion de Funciones que Llamaran los Botones
 
+    # Cierra la Aplicacion
     def Close():
         app.destroy()
 
+    # Organiza los Botones en el Frame
     def OrganizateButtons(Bonton):
         Bonton.pack(side=ct.TOP)
         Bonton.pack(fill=ct.X)
         Bonton.pack(pady=1)
 
+    # Define la Posicion en Pantalla de los Frames
     def ScreensPositions(Screen):
         Screen.pack(expand=True)
         Screen.pack(fill=ct.BOTH)
         Screen.pack(padx=2)
 
+    # Abre el Frame Principal
     def OpenMainScreen():
         ScreensPositions(ScreenMainFrame)
         ScreenLuFrame.pack_forget()
         ScreenZFrame.pack_forget()
 
+    # Abre el Frame de LU
     def OpenLuScreen():
         ScreensPositions(ScreenLuFrame)
         ScreenMainFrame.pack_forget()
         ScreenZFrame.pack_forget()
 
+    # Abre el Frame de Pasos en Z
     def OpenZScreen():
         ScreensPositions(ScreenZFrame)
         ScreenLuFrame.pack_forget()
@@ -139,22 +143,23 @@ def MenuBotones(app):
         corner_radius=0,
     )
     ScreensPositions(ScreenMainFrame)
-    Content.ScreenData(ScreenMainFrame)
 
     # ________________________________Frame Pasos de LU______________________________________________
 
-    ScreenLuFrame = ct.CTkFrame(
+    ScreenLuFrame = ct.CTkScrollableFrame(
         master=app,
-        fg_color="#293C4B",
+        fg_color="white",
         corner_radius=0,
     )
-    ContentLU.Content(ScreenLuFrame)
 
     # ________________________________Frame Pasos de Z_______________________________________________
 
-    ScreenZFrame = ct.CTkFrame(
+    ScreenZFrame = ct.CTkScrollableFrame(
         master=app,
-        fg_color="#293C4B",
+        fg_color="white",
         corner_radius=0,
     )
-    ContentZ.Content(ScreenZFrame)
+
+    # Funcion que Genera los Frames al momento de Insercion de Datos
+
+    Content.ScreenData(ScreenMainFrame, ScreenLuFrame, ScreenZFrame)
