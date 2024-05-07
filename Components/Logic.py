@@ -1,4 +1,6 @@
 # Funcion de Formato
+import customtkinter
+from CTkMessagebox import CTkMessagebox as Cm
 
 
 # Formato de los Numeros para Tratarlos con 4 Digitos
@@ -38,12 +40,28 @@ def LU(Matriz_A, N):
     U12 = F(Matriz_A[0][1])
     U13 = F(Matriz_A[0][2])
 
-    L21 = F(Matriz_A[1][0] / U11)
+    try:
+        L21 = F(Matriz_A[1][0] / U11)
+    except ZeroDivisionError:
+        Cm(
+            title="Error",
+            icon="warning",
+            message="Division Por Cero Encontrado Para L21",
+        )
+
     U22 = F(Matriz_A[1][1] - (L21 * U12))
     U23 = F(Matriz_A[1][2] - (L21 * U13))
 
     L31 = F(Matriz_A[2][0] / U11)
-    L32 = F((Matriz_A[2][1] - (L31 * U12)) / U22)
+    try:
+        L32 = F((Matriz_A[2][1] - (L31 * U12)) / U22)
+    except ZeroDivisionError:
+        Cm(
+            title="Error",
+            icon="warning",
+            message="Division Por Cero Encontrado Para L32 \nPosible Error Casillas con Valores Iguales (Singularidad)",
+        )
+
     U33 = F((Matriz_A[2][2] - (L31 * U13) - (L32 * U23)))
 
     Matriz_L = [[1, 0, 0], [L21, 1, 0], [L31, L32, 1]]
@@ -68,12 +86,20 @@ def UB(Matriz_L, Matriz_B):
 
 # Funcion para Encontrar Valores de X
 def UZ(Matriz_U, Matriz_Z):
-    X3 = F(Matriz_Z[2] / Matriz_U[2][2])
-    X2 = F((Matriz_Z[1] - (Matriz_U[1][2] * X3)) / Matriz_U[1][1])
-    X1 = F(
-        (Matriz_Z[0] - (Matriz_U[0][2] * X3) - (Matriz_U[0][1] * X2)) / Matriz_U[0][0]
-    )
+    try:
+        X3 = F(Matriz_Z[2] / Matriz_U[2][2])
+        X2 = F((Matriz_Z[1] - (Matriz_U[1][2] * X3)) / Matriz_U[1][1])
+        X1 = F(
+            (Matriz_Z[0] - (Matriz_U[0][2] * X3) - (Matriz_U[0][1] * X2))
+            / Matriz_U[0][0]
+        )
+        Matriz_X = [X1, X2, X3]
 
-    Matriz_X = [X1, X2, X3]
+    except ZeroDivisionError:
+        Cm(
+            title="Error",
+            icon="warning",
+            message="Posible Causa, Columna Con Valores Iguales, Infinitas Soluciones o Sin Solucion",
+        )
 
     return Matriz_X

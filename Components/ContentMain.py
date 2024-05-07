@@ -1,5 +1,6 @@
 import customtkinter as ct
 import Components.Logic as Lg
+from CTkMessagebox import CTkMessagebox
 
 # Definicion Variables Globales y Sobreescritura de las Ya Declaradas en Documento Logic
 MatrizA = [[50, 4, 25], [20, 10, 10], [20, 20, 40]]
@@ -362,21 +363,29 @@ def ScreenData(frame, FrameMainLu, FrameMainZ):
         LabelValuesComparation.pack(pady=20)
 
     def DefinirDatos():
-        MatrizA[0][0] = float(A01.get())
-        MatrizA[0][1] = float(A02.get())
-        MatrizA[0][2] = float(A03.get())
-        MatrizA[1][0] = float(A11.get())
-        MatrizA[1][1] = float(A12.get())
-        MatrizA[1][2] = float(A13.get())
-        MatrizA[2][0] = float(A21.get())
-        MatrizA[2][1] = float(A22.get())
-        MatrizA[2][2] = float(A23.get())
-        MatrizB[0] = float(B01.get())
-        MatrizB[1] = float(B02.get())
-        MatrizB[2] = float(B03.get())
-        createFrames()
-        Content(FrameMainLu)
-        ContentZ(FrameMainZ)
+        try:
+            MatrizA[0][0] = float(A01.get())
+            MatrizA[0][1] = float(A02.get())
+            MatrizA[0][2] = float(A03.get())
+            MatrizA[1][0] = float(A11.get())
+            MatrizA[1][1] = float(A12.get())
+            MatrizA[1][2] = float(A13.get())
+            MatrizA[2][0] = float(A21.get())
+            MatrizA[2][1] = float(A22.get())
+            MatrizA[2][2] = float(A23.get())
+            MatrizB[0] = float(B01.get())
+            MatrizB[1] = float(B02.get())
+            MatrizB[2] = float(B03.get())
+        except ValueError:
+            CTkMessagebox(
+                title="Error",
+                message="- Caracter No Permitido\n- Celda(s) Vacia\nVer Manual Recomendado",
+                icon="cancel",
+            )
+        else:
+            createFrames()
+            Content(FrameMainLu)
+            ContentZ(FrameMainZ)
 
     def Content(FrameMainLU):
 

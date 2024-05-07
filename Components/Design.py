@@ -1,5 +1,6 @@
 import customtkinter as ct
 import Components.ContentMain as Content
+from CTkMessagebox import CTkMessagebox
 
 
 def MenuBotones(app):
@@ -8,7 +9,20 @@ def MenuBotones(app):
 
     # Cierra la Aplicacion
     def Close():
-        app.destroy()
+        msg = CTkMessagebox(
+            title="Exit?",
+            message="¿Desea Cerrar el Programa?",
+            icon="question",
+            option_1="Cancel",
+            option_2="No",
+            option_3="Yes",
+        )
+        response = msg.get()
+
+        if response == "Yes":
+            app.destroy()
+        else:
+            print("Enjoy")
 
     # Organiza los Botones en el Frame
     def OrganizateButtons(Bonton):
